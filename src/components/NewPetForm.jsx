@@ -7,7 +7,7 @@ function NewPetForm(props){
 
   function handleNewPetFormSubmission(event) {
     event.preventDefault();
-    props.onNewPetCreation({name: _name.value, id: v4()});
+    props.onNewPetCreation({name: _name.value, id: v4(), health: 10});
     _name.value = '';
   }
 

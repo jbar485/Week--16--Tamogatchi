@@ -4,6 +4,7 @@ import Error404 from './Error404';
 import Header from './Header'
 import PetList from './PetList'
 import NewPetForm from './NewPetForm'
+import NewPetControl from './NewPetControl';
 import './App.css';
 
 class App extends React.Component {
@@ -14,6 +15,7 @@ class App extends React.Component {
       masterPetList: []
     };
     this.handleAddingNewPetToList = this.handleAddingNewPetToList.bind(this);
+    this.handleIncreaseHealth = this.handleIncreaseHealth.bind(this);
   }
 
   handleAddingNewPetToList(newPet){
@@ -22,13 +24,23 @@ class App extends React.Component {
     this.setState({masterPetList: newMasterPetList});
   }
 
+  handleIncreaseHealth(id){
+    console.log('asdf');
+    let newMasterPetList = this.state.masterPetList.slice();
+    newMasterPetList.forEach(function(pet){
+      if (pet.id == id) {
+        pet.health += 1;
+      }
+    });
+    this.setState({masterPetList: newMasterPetList});
+  }
 
   render() {
     return (
       <div>
       <Header/>
       <Switch>
-        <Route exact path='/' render={()=><PetList PetList={this.state.masterPetList} />} />
+        <Route exact path='/' render={()=><PetList petList={this.state.masterPetList} onIncreseHealth={this.handleIncreaseHealth}/>} />
         <Route path='/newpet' render={()=><NewPetForm onNewPetCreation={this.handleAddingNewPetToList} />} />
       <Route component={Error404} />
       </Switch>

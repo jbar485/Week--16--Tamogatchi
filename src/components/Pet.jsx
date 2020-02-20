@@ -1,35 +1,23 @@
 import React from "react";
-
-class Pet extends React.Component{
-
-  constructor(props) {
-    console.log(props);
-    super(props);
-    this.state = {
-      totalHealth: 10,
-
-    };
-    this.increaseHealth = this.increaseHealth.bind(this);
-  }
-increaseHealth(){
-  let newHealthNumber = this.state.totalHealth
-  newHealthNumber += 1
-  this.setState({totalHealth: newHealthNumber})
-}
+import PropTypes from "prop-types";
 
 
-render(){
+function Pet(props){
 
   return(
     <div>
-    <h4> {this.props.name}</h4>
+    <h4> {props.name}</h4>
     <div>
-    <p>{this.state.totalHealth}</p>
-    <p onClick={this.increaseHealth}> 👍</p>
+    <p>{props.health}</p>
+    <button onClick={() => props.onIncreseHealth(props.id)} type='submit'>Feed</button>
     </div>
     </div>
-
   );
 }
-}
+
+Pet.propTypes = {
+  name: PropTypes.string.isRequired,
+  health: PropTypes.number.isRequired
+};
+
 export default Pet;

@@ -1,38 +1,38 @@
 import React from "react";
-
 import Pet from "./Pet"
-class PetList extends React.Component{
+import PropTypes from 'prop-types';
+import {Col, Row} from 'react-bootstrap'
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      masterPets: [{
-          title: 'test title',
-          content: 'test content'
-      },
-    ]
-    };
-    this.addNewPetToList = this.addNewPetToList.bind(this);
+
+function PetList(props){
+  console.log(props.petList);
+
+  function handleIncreaseHealth(){
+
   }
-    addNewPetToList(post){
-      var newMasterPets = this.state.masterPets.slice();
-          newMasterPets.push(post);
-          this.setState({masterPets: newMasterPets});
-  }
-
-
-render(){
-
-  return(
+  return (
     <div>
-      {this.state.masterPets.map((post, index) =>
-      <Pet title={post.title}
-            content={post.content}
-              key={index}/>
-            )}
+    <Row>
+      <Col></Col>
+      <Col>
+        {props.petList.map((pet) =>
+             <Pet
+             onIncreseHealth = {props.onIncreseHealth}
+             name={pet.name}
+              health = {pet.health}
+              id ={pet.id}
+              key={pet.id}/>
+         )}
+      </Col>
+      <Col></Col>
+    </Row>
     </div>
   );
 }
-}
+
+PetList.propTypes = {
+  petList: PropTypes.array
+};
+
 
 export default PetList;
