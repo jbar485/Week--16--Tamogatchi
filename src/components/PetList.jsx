@@ -18,6 +18,7 @@ function PetList(props){
         {props.petList.map((pet) =>
              <Pet
              onIncreseHealth = {props.onIncreseHealth}
+             dHealth = {props.dHealth}
              name={pet.name}
               health = {pet.health}
               id ={pet.id}

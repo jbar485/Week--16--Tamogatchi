@@ -3,6 +3,11 @@ import PropTypes from "prop-types";
 
 
 function Pet(props){
+  
+  setInterval(() => {
+    props.dHealth(props.id)
+  }, 1000);
+
 
   return(
     <div>
